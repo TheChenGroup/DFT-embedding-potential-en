@@ -1,0 +1,2 @@
+Overwritten attributes  get_hcore  of <class 'pyscf.qmmm.itrf.QMMM'>
+slurmstepd: error: *** JOB 2531559 ON comput70 CANCELLED AT 2021-12-10T18:08:20 DUE TO TIME LIMIT ***
