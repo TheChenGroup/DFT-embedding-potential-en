@@ -1,11 +1,13 @@
 # DFT Embedded Potential Construction
 
-By Chen Yilin
+This repository contains the codebase for the paper [Multiconfigurational nature of electron correlation within nitrogen vacancy centers in diamond](https://doi.org/10.1103/PhysRevB.108.045111). If you use this code in your work, please [cite our paper](CITATION.bib).
 
 > [!Note]
 > This document is converted from [Instruction_DFT_Embedded_Potential_Construction_English.docx](Instruction_DFT_Embedded_Potential_Construction_English.docx). Please check the original document if the format goes wrong here.
 
-## Replace the corresponding files in PySCF (Be sure to backup the original files before replacing)
+## Usage
+
+### Replace the corresponding files in PySCF (Be sure to backup the original files before replacing)
 
 - Replace hf.py, uhf.py, rohf.py in the pyscf/scf/ path with the files
 from step 0 folder.
@@ -13,7 +15,7 @@ from step 0 folder.
 - Replace rks.py, uks.py, roks.py in the pyscf/dft/ path with the files
 from step 0 folder.
 
-## Note
+### Note
 
 After replacement, the \"symmetry\" setting in PySCF will have a bug
 that is not yet fixed.
@@ -27,7 +29,7 @@ hf_mo_occ.txt, hf_mo_occ_a.txt, and hf_mo_occ_b.txt in the input files
 to avoid errors. If errors occur, add the corresponding empty files (see
 section 3-2).
 
-## Current Solutions:
+### Current Solutions:
 
 1. Backup the original files before replacement, and replace them back
 when symmetry calculations are needed. (Constructing the embedding
@@ -37,7 +39,7 @@ systems might).
 2. Fix the bug, possibly in pyscf/scf/hf_symmetry.py and
 pyscf/dft/rks_symmetry.py.
 
-## Overall Steps:
+### Overall Steps:
 
 1. Specify the \"embedding region\" atoms in the system, and the rest
 as \"environment region\".
@@ -62,11 +64,11 @@ Note: Detailed comments are available in the example code, please read
 them carefully. This section only explains the framework and basic
 process. Read with the code and comments!
 
-## Simple Flowchart:
+### Simple Flowchart:
 ![image](https://github.com/TheChenGroup/DFT-embedding-potential-en/assets/36528777/c0b65947-f850-4bd5-b726-25dd4c8c4c88)
 
 
-## First Calculation Steps (Using Ethanol C2H6O as an Example):
+### First Calculation Steps (Using Ethanol C2H6O as an Example):
 
 3-1. Open the XYZ coordinate file and specify the atoms to be the
 \"embedding region\" based on their line numbers (starting from 0).
@@ -114,7 +116,7 @@ N_iteration is the current OEP iteration count.
 After this calculation, V_DMFET.txt stores the current embedding
 potential Vemb.
 
-## Continuation Calculation:
+### Continuation Calculation:
 
 See section 1-2.
 
@@ -133,7 +135,7 @@ construction, and converges.
 After this calculation, V_DMFET.txt stores the current embedding
 potential Vemb.
 
-## Orbital Orthogonalization:
+### Orbital Orthogonalization:
 
 This step is for degenerate orbitals or special cases requiring a large
 smearing width.
@@ -148,7 +150,7 @@ The basic idea is to reconstruct the orthogonalized dma and dmb using
 Reformorbitals.py and then perform OEP for the embedding region a with
 the new dma.
 
-## Orbital Projection:
+### Orbital Projection:
 
 Orbital projection is universal.
 
@@ -159,3 +161,24 @@ After this calculation, Vemb_with_P.txt stores the final embedding
 potential with the projection term.
 
 Thus, the DFT embedded potential construction is complete.
+
+## Citing Our Paper
+
+If you use this code in your work, please cite the following paper:
+
+```bib
+@article{PhysRevB.108.045111,
+  title = {Multiconfigurational nature of electron correlation within nitrogen vacancy centers in diamond},
+  author = {Chen, Yilin and Jiang, Tonghuan and Chen, Haoxiang and Han, Erxun and Alavi, Ali and Yu, Kuang and Wang, Enge and Chen, Ji},
+  journal = {Phys. Rev. B},
+  volume = {108},
+  issue = {4},
+  pages = {045111},
+  numpages = {12},
+  year = {2023},
+  month = {Jul},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevB.108.045111},
+  url = {https://link.aps.org/doi/10.1103/PhysRevB.108.045111}
+}
+```
